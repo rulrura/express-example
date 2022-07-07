@@ -5,7 +5,7 @@ node {
   }
   stage('========== Build image ==========') {
 	echo "docker build : making docker image"
-    app = docker.build("jenkins-docker-pipeline/my-image")
+    app = docker.build("rulura/express-example:${env.BUILD_NUMBER}")
   }
   
 /*  
