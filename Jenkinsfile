@@ -5,15 +5,16 @@ node {
   }
   stage('========== Build image ==========') {
 	echo "docker build : making docker image"
-    app = docker.build("rulura/express-example:${env.BUILD_NUMBER}")
+    //app = docker.build("rulura/express-example:${env.BUILD_NUMBER}")
+	app = docker.build("rulura/express-example")
   }
   
-/*  
+
   stage('========== Push image ==========') {
-    docker.withRegistry('YOUR_REGISTRY', 'YOUR_CREDENTIAL') {
+    docker.withRegistry('https://registry.hub.docker.com', 'hub-docker-id') {
       app.push("${env.BUILD_NUMBER}")
       app.push("latest")
     }
   }
-  */
+
 }
