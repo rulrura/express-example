@@ -6,8 +6,8 @@ node {
   stage('========== Build image ==========') {
 	echo "docker build : making docker image"
     //app = docker.build("rulura/express-example:${env.BUILD_NUMBER}")
-	  //app = docker.build("rulura/express-example")
-    app = docker.build("express-example");
+	  app = docker.build("rulura/express-example")
+    //app = docker.build("express-example");
   }
   
 
