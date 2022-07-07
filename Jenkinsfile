@@ -17,6 +17,7 @@ node {
 
   //docker tag jhooq-docker-demo rahulwagh17/jhooq-docker-demo:jhooq-docker-demo
     sh "docker tag express-example:$BUILD_NUMBER rulrura/express-example:$BUILD_NUMBER"
+    sh "docker push rulrura/express-example:$BUILD_NUMBER"
     //sh "docker rmi $registry:$BUILD_NUMBER"
 
     // docker.withRegistry('', 'hub-docker-id') {
