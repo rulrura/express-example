@@ -28,4 +28,10 @@ node {
 	
   }
 
+  stage('========== Start Container ==========') {
+
+	echo "docker run -d -p 3000:3000 rulrura/express-example:$BUILD_NUMBER"
+
+	
+  }
 }
