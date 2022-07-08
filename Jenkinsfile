@@ -19,15 +19,18 @@ node {
 
   //docker tag jhooq-docker-demo rahulwagh17/jhooq-docker-demo:jhooq-docker-demo
     //sh "docker tag express-example:$BUILD_NUMBER rulrura/express-example:$BUILD_NUMBER"
+	
 	sh "docker tag express-example rulrura/express-example:$BUILD_NUMBER"
     sh "docker push rulrura/express-example:$BUILD_NUMBER"
+	
     //sh "docker rmi $registry:$BUILD_NUMBER"
 
-    // docker.withRegistry('', 'hub-docker-id') {
-    //   app.push("${env.BUILD_NUMBER}")
-    //   app.push("latest")
+	docker.withRegistry('', 'hub-docker-id') {
+		sh "echo 'abc'"
+       //app.push("${env.BUILD_NUMBER}")
+       //app.push("latest")
 	    
-    // }
+     }
   }
 
 }
