@@ -6,9 +6,11 @@ node {
   stage('========== Build image ==========') {
 	  echo "docker build : making docker image"
     //app = docker.build("rulura/express-example:${env.BUILD_NUMBER}")
-	  app = docker.build("express-example:${env.BUILD_NUMBER}")
+	  //app = docker.build("express-example:${env.BUILD_NUMBER}")
     //app = docker.build("express-example");
     //app.push()
+	
+	sh "docker build -t express-example ."
   }
   
 
@@ -16,7 +18,8 @@ node {
 
 
   //docker tag jhooq-docker-demo rahulwagh17/jhooq-docker-demo:jhooq-docker-demo
-    sh "docker tag express-example:$BUILD_NUMBER rulrura/express-example:$BUILD_NUMBER"
+    //sh "docker tag express-example:$BUILD_NUMBER rulrura/express-example:$BUILD_NUMBER"
+	sh "docker tag express-example rulrura/express-example:$BUILD_NUMBER"
     sh "docker push rulrura/express-example:$BUILD_NUMBER"
     //sh "docker rmi $registry:$BUILD_NUMBER"
 
