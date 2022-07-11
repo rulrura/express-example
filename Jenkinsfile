@@ -19,11 +19,19 @@ node {
 
 	echo "docker push image - no script"
 	
+	try {
+		docker.withRegistry('', 'hub-docker-id') {
+			dockerImage.push()			
+		}	
+	}  catch (Exception e) {
+		e.printStackTrace();
+		continue;
+	}
+	
 		//script {
-			docker.withRegistry('', 'hub-docker-id') {
-				dockerImage.push()
-				
-			}
+			//docker.withRegistry('', 'hub-docker-id') {
+//				dockerImage.push()				
+			//}
 		//}
 	
   }
