@@ -35,7 +35,7 @@ node {
 		sh "docker stop $JOB_NAME && docker container rm $JOB_NAME"
 		//sh "docker container rm express-example"
 	} catch (Exception e) {
-		e.printStackTrace();
+		//e.printStackTrace();
 		continue;
 	}
   }
