@@ -1,15 +1,15 @@
 node {
   stage('========== Clone repository ==========') {
-    checkout scm
-	echo "checkout scm... test echo : {$JOB_NAME}"
+	echo "checkout scm... test echo : $JOB_NAME"
+    checkout scm	
   }
   stage('========== Build image ==========') {
 	echo "docker build : making docker image"
 	
-	//sh "docker build -t express-example ."
+	//sh "docker build -t $JOB_NAME ."
 	
 		//script {
-			dockerImage = docker.build "rulrura/express-example:$BUILD_NUMBER"
+			dockerImage = docker.build "rulrura/$JOB_NAME:$BUILD_NUMBER"
 		//}
 	
   }
@@ -28,9 +28,10 @@ node {
 	
   }
 
-  stage('========== Stop Container ==========') {
-	echo "docker stop express-example"
-	sh "docker stop express-example"
+  stage('========== Stop & Delete Container ==========') {
+	echo "docker stop and delete $JOB_NAME"
+	sh "docker stop $JOB_NAME && docker container rm $JOB_NAME"
+	//sh "docker container rm express-example"
   }
   
   stage('========== Start Container ==========') {
