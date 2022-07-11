@@ -4,7 +4,7 @@ node {
 	echo "checkout scm... test echo"
   }
   stage('========== Build image ==========') {
-	echo "docker build : making docker image222"
+	echo "docker build : making docker image"
 	
 	//sh "docker build -t express-example ."
 	
