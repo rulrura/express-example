@@ -8,23 +8,23 @@ node {
 	
 	//sh "docker build -t express-example ."
 	
-		script {
+		//script {
 			dockerImage = docker.build "rulrura/express-example:$BUILD_NUMBER"
-		}
+		//}
 	
   }
   
 
   stage('========== Push image ==========') {
 
-	echo "docker push image"
+	echo "docker push image - no script"
 	
-		script {
+		//script {
 			docker.withRegistry('', 'hub-docker-id') {
 				dockerImage.push()
 				
 			}
-		}
+		//}
 	
   }
 
