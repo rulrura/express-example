@@ -18,28 +18,26 @@ node {
   stage('========== Push image ==========') {
 
 	echo "docker push image - no script"
-	
-	try {
-		docker.withRegistry('', 'hub-docker-id') {
-			dockerImage.push()			
-		}	
-	}  catch (Exception e) {
-		e.printStackTrace();
-		continue;
-	}
+
 	
 		//script {
-			//docker.withRegistry('', 'hub-docker-id') {
-//				dockerImage.push()				
-			//}
+			docker.withRegistry('', 'hub-docker-id') {
+				dockerImage.push()				
+			}
 		//}
 	
   }
 
   stage('========== Stop & Delete Container ==========') {
 	echo "docker stop and delete $JOB_NAME"
-	sh "docker stop $JOB_NAME && docker container rm $JOB_NAME"
-	//sh "docker container rm express-example"
+	
+	try {
+		sh "docker stop $JOB_NAME && docker container rm $JOB_NAME"
+		//sh "docker container rm express-example"
+	} catch (Exception e) {
+		e.printStackTrace();
+		continue;
+	}
   }
   
   stage('========== Start Container ==========') {
